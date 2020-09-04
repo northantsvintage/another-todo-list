@@ -27,11 +27,29 @@ class App extends Component {
   };
 
   handleChange = (e) => {
-    console.log("handle change");
+    this.setState({
+      item: e.target.value,
+    });
   };
 
   handleSubmit = (e) => {
-    console.log("handle submit");
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item,
+    };
+    // replace items from state with newItem ... spread operator
+    const updatedItems = [...this.state.items, newItem];
+
+    this.setState(
+      {
+        items: updatedItems,
+        item: "",
+        id: uuidv4(),
+        editItem: false,
+      },
+      console.log(this.state)
+    );
   };
 
   clearList = () => {
@@ -47,7 +65,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="container">
         <div className="row">
