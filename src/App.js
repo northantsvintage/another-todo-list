@@ -60,10 +60,19 @@ class App extends Component {
 
   handleEdit = (id) => {
     // console.log(`handle edit ${id}`);
+    // get the selected item
+    const selectedItem = this.state.items.find((item) => item.id === id);
+    const filteredItems = this.state.items.filter((item) => item.id !== id);
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      id: id, // id that is passed down
+    });
   };
 
   handleDelete = (id) => {
     // console.log(`handle delete ${id}`);
+    // returned are the items that dont have the same id as the one that is passed down - list without the item
     const filteredItems = this.state.items.filter((item) => item.id !== id);
     this.setState({
       items: filteredItems,
